@@ -1,0 +1,25 @@
+From aad5570fbf7dbdf5c3cbdb0127e25eba488f73da Mon Sep 17 00:00:00 2001
+From: huangjf <hjf@t-chip.com.cn>
+Date: Wed, 9 Jun 2021 11:24:50 +0800
+Subject: [PATCH] [package/netowrk]: allow forward for firewall
+
+---
+ package/network/config/firewall/files/firewall.config | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package/network/config/firewall/files/firewall.config b/package/network/config/firewall/files/firewall.config
+index 5e22f984ce..56e1b20fde 100644
+--- a/package/network/config/firewall/files/firewall.config
++++ b/package/network/config/firewall/files/firewall.config
+@@ -2,7 +2,7 @@ config defaults
+ 	option syn_flood	1
+ 	option input		ACCEPT
+ 	option output		ACCEPT
+-	option forward		REJECT
++	option forward		ACCEPT
+ # Uncomment this line to disable ipv6 rules
+ #	option disable_ipv6	1
+ 
+-- 
+2.17.1
+
