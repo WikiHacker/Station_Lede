@@ -38,6 +38,7 @@ boot() {
 	grep -q pstore /proc/filesystems && /bin/mount -o noatime -t pstore pstore /sys/fs/pstore
 	[ "$FAILSAFE" = "true" ] && touch /tmp/.failsafe
 
+        [ ! -d "/lib/modules/$(uname -r)" ] && mkdir -p "/lib/modules/$(uname -r)"
 	/sbin/kmodloader
 
 	[ ! -f /etc/config/wireless ] && {
