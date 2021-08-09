@@ -37,10 +37,10 @@ function network_forward()
         return 0
 }
 
-wan_device=$(uci get network.wan.device)
-wan_ec20=$(uci get network.wan_ec20.device)
-wan_ec200s=$(uci get network.wan_ec200s.device)
+wan_default=$(uci get network.wan.ifname)
+wan_ec20=$(uci get network.ec20_wan.ifname)
+wan_ec200s=$(uci get network.ec200s_wan.ifname)
 
 network_forward $wan_device ||  \
-network_forward $wan_ec20 ||
+network_forward $wan_ec20 || \
 network_forward $wan_ec200s
