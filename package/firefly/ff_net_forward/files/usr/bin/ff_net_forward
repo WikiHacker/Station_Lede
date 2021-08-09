@@ -41,6 +41,6 @@ wan_default=$(uci get network.wan.ifname)
 wan_ec20=$(uci get network.ec20_wan.ifname)
 wan_ec200s=$(uci get network.ec200s_wan.ifname)
 
-network_forward $wan_device ||  \
-network_forward $wan_ec20 || \
-network_forward $wan_ec200s
+[ $(network_forward $wan_default) ] || \
+[ $(network_forward $wan_ec20) ] || \
+[ $(network_forward $wan_ec200s) ]
