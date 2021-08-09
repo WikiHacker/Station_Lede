@@ -11,8 +11,8 @@ firefly_setup_macs()
 
     case "$board" in
     firefly,rk3308b-roc-cc-plus-amic-ext_emmc)
-        lan_mac=$(macaddr_setbit_la "$(cat /sys/class/net/eth0/address)")
-        wan_mac=$(macaddr_add "$lan_mac" 1)
+        wan_mac=$(macaddr_setbit_la "$(cat /sys/class/net/eth0/address)")
+        lan_mac=$(macaddr_add "$lan_mac" 1)
         ;;  
     esac
 
@@ -25,13 +25,15 @@ firefly_setup_interfaces()
     local board="$1"
     case "$board" in
     firefly,rk3308b-roc-cc-plus-amic-ext_emmc)
-        ucidef_set_interfaces_lan_wan "eth0" "eth1"
-        # 4G EC200S
-        ucidef_set_interface "wan_ec200s" device "usb0" protocol "dhcp"
+        ucidef_set_interfaces_lan_wan "eth1" "eth0"
+        ucidef_set_interface "ec200s_wan" ifname "usb0" protocol "dhcp"
+        ;;
+    rockchip,rk3568-firefly-roc-pc)
+        ucidef_set_interfaces_lan_wan "eth1" "eth0"
+        ucidef_set_interface "ec20_wan" ifname "wwan0" protocol "dhcp"
         ;;
     *)
-        ucidef_set_interfaces_lan_wan "eth0" "eth1"
-        ucidef_set_interface "wan_ec20" device "wwan0" protocol "dhcp"
+        ucidef_set_interfaces_lan_wan "eth1" "eth0"
         ;;
     esac
 }
